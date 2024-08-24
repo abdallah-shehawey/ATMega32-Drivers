@@ -1,0 +1,4 @@
+#ifndef SERVO_MOTOR_PRIVATE_H_
+#define SERVO_MOTOR_PRIVATE_H_
+
+#endif /* SERVO_MOTOR_PRIVATE_H_ */
