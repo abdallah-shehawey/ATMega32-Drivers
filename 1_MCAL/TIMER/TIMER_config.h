@@ -187,35 +187,35 @@
 	 * 1. FALLING_EDGE
 	 * 2. RISING_EDGE
 	 */
-	#define TIMER1_ICR_EDGE				RISING_EDGE
+	#define TIMER1_ICR_EDGE				          RISING_EDGE
 
 	/*Set Timer1 Overflow Interrupt
 	 * Choose between
 	 * 1. DISABLE
 	 * 2. ENABLE
 	 */
-	#define TIMER1_OVERFLOW_INTERRUPT			DISABLE
+	#define TIMER1_OVERFLOW_INTERRUPT			  DISABLE
 
 	/*Set Timer1 CTCB Interrupt
 	 * Choose between
 	 * 1. DISABLE
 	 * 2. ENABLE
 	 */
-	#define TIMER1_CTCB_INTERRUPT			DISABLE
+	#define TIMER1_CTCB_INTERRUPT			       DISABLE
 
 	/*Set Timer1 CTCA Interrupt
 	 * Choose between
 	 * 1. DISABLE
 	 * 2. ENABLE
 	 */
-	#define TIMER1_CTCA_INTERRUPT			DISABLE
+	#define TIMER1_CTCA_INTERRUPT		        	DISABLE
 
 	/*Set Timer1 Input Capture Interrupt
 	 * Choose between
 	 * 1. DISABLE
 	 * 2. ENABLE
 	 */
-	#define TIMER1_ICR_INTERRUPT			DISABLE
+	#define TIMER1_ICR_INTERRUPT		        	DISABLE
 
 /***********************************************************************************************/
 /***********************************************************************************************/
