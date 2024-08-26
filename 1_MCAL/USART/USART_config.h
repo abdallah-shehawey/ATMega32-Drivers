@@ -54,28 +54,28 @@
  * 1. DISABLE
  * 2. ENABLE
  */
-#define USART_UDR_EMPTY_INTERRUPT           DISABLE
+#define USART_UDR_EMPTY_INTERRUPT            DISABLE
 
 /*Set Receiver Enable
  * choose between
  * 1. DISABLE
  * 2. ENABLE
  */
-#define USART_RECEIVER_ENABLE             ENABLE
+#define USART_RECEIVER_ENABLE                ENABLE
 
 /*Set Transmitter Enable
  * choose between
  * 1. DISABLE
  * 2. ENABLE
  */
-#define USART_TRANSMITTER_ENABLE           ENABLE
+#define USART_TRANSMITTER_ENABLE            ENABLE
 
 /*Set USART Mode Select
  * choose between
  * 1. ASYNCHRONOUS
  * 2. SYNCHRONOUS
  */
-#define USART_MODE                      ASYNCHRONOUS
+#define USART_MODE                          ASYNCHRONOUS
 
 /*Set Parity Mode
  * choose between
@@ -83,14 +83,14 @@
  * 2. EVEN_PARITY
  * 3. ODD_PARITY
  */
-#define USART_PARITY_MODE               DISABLE
+#define USART_PARITY_MODE                   DISABLE
 
 /*Set Stop bit
  * choose between
  * 1. STOP_BIT_1
  * 2. STOP_BIT_2
  */
-#define USART_STOP_BIT                 STOP_BIT_1
+#define USART_STOP_BIT                      STOP_BIT_1
 
 /*Set Data Size
  * choose between
@@ -100,13 +100,13 @@
  * 4. DATA_SIZE_8_BIT
  * 5. DATA_SIZE_9_BIT
  */
-#define USART_DATA_SIZE               DATA_SIZE_8_BIT
+#define USART_DATA_SIZE                   DATA_SIZE_8_BIT
 
 /*Set Clock Polarity (for SYNCHRONOUS mode only)
  * choose between
  * 1. XCK_RISING_TX_XCH_FALLING_RX
  * 2. XCK_RISING_RX_XCH_FALLING_TX
  */
-#define USART_CLOCK_POLARITY          XCK_RISING_TX_XCH_FALLING_RX
+#define USART_CLOCK_POLARITY              XCK_RISING_TX_XCH_FALLING_RX
 
 #endif /* USART_CONFIG_H_ */
