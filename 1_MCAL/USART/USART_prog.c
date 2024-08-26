@@ -403,7 +403,7 @@ u8 USART_u8SendStringSynch(u8 *Copy_pu8String)
 
 /*------------------------------------------------------------------------------------------------------------------------------------------------------
  *         	                                      A function to send string from Tx to Rx (Interrupt)
- *                                                *----------------------------------------------------*
+ *                                               *----------------------------------------------------*
  * Parameters :
  *		Copy_pu8String   => pointer that holds the data
  *      NotificationFunc => function that called after the transmit complete
