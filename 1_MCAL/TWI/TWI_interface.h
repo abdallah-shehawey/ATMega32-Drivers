@@ -14,16 +14,16 @@
 /* Error Status fot TWI */
 typedef enum
 {
-	NoError,
-	StartConditionErr,
-	RepeatedStartError,
-	SlaveAddressWithWriteErr,
-	SlaveAddressWithReadErr,
-	MasterWriteByteErr,
-	MasterReadByteErr,
-	SlaveWriteByteErr,
-	SlaveReadByteErr,
-}TWI_ErrStatus;
+	NoError                  ,
+	StartConditionErr        ,
+	RepeatedStartError       ,
+	SlaveAddressWithWriteErr ,
+	SlaveAddressWithReadErr  ,
+	MasterWriteByteErr       ,
+	MasterReadByteErr        ,
+	SlaveWriteByteErr        ,
+	SlaveReadByteErr         ,
+}TWI_ErrStatus             ;
 
 /*Set master address to 0 if master will not be addressed*/
 void          TWI_vInitMaster                    (u8 Copy_u8Address                       );
