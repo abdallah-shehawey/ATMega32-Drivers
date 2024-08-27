@@ -304,7 +304,7 @@ TWI_ErrStatus TWI_SlaveReadDataByte(u8* Copy_pu8DataByte)
 }
 
 
-void TWI_SendStopCondition(void)
+void TWI_vSendStopCondition(void)
 {
 	/*Sent a stop condition on the bus*/
 	SET_BIT(TWCR,TWCR_TWSTO);
