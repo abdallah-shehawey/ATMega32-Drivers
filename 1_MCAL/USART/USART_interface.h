@@ -39,8 +39,8 @@ u8   USART_u8SendData                       (u8 Copy_u8Data                     
 u8   USART_u8ReceiveData                    (u8 * Copy_u8ReceivedData                                                      );
 u8   USART_u8GetParityError                 (void                                                                          );
 
-u8   USART_u8SendStringSynch                ( u8 * Copy_pu8String                                                     );
-u8   USART_u8SendStringAsynch               ( u8 * Copy_pu8String , void (* NotificationFunc)(void)                   );
+u8   USART_u8SendStringSynch                ( u8 * Copy_pu8String                                                          );
+u8   USART_u8SendStringAsynch               ( u8 * Copy_pu8String , void (* NotificationFunc)(void)                        );
 
 u8   USART_u8ReceiveBufferSynch             (u8 * Copy_pu8String , u32 Copy_u32BufferSize                                  );
 u8   USART_u8ReceiveBufferAsynch            (u8 * Copy_pu8String , u32 Copy_u32BufferSize , void (* NotificationFunc)(void));

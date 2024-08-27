@@ -298,7 +298,6 @@ u8 USART_u8SendData(u8 Copy_u8Data)
     }
     else
     {
-
       UDR = Copy_u8Data;
     }
 
