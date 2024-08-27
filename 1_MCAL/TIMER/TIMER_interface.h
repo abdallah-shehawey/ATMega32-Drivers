@@ -88,42 +88,43 @@
 #define TIMER_u8_ICP_FALLING_EDGE                            0
 #define TIMER_u8_ICP_RAISING_EDGE                            1
 
+/*___________________________________________________________________________________________________________________*/
 
+/* Interface Function */
+void TIMER0_vInit                  (void                                                     );
+void TIMER0_vSetPreload            (u8 Copy_u8Preload                                        );
+void TIMER0_vSetCTC                (u8 Copy_u8CTC                                            );
+u8 TIMER0_u8GetTimerCounterValue   (void                                                     );
 
-void TIMER0_vInit(void);
-void TIMER0_vSetPreload(u8 Copy_u8Preload);
-void TIMER0_vSetCTC(u8 Copy_u8CTC);
-u8 TIMER0_u8GetTimerCounterValue(void);
+void TIMER1_vInit                  (void                                                     );
+void TIMER1_vSetPreload            (u16 Copy_u16Preload                                      );
+void TIMER1_vSetCTCA               (u16 Copy_u16CTCA                                         );
+void TIMER1_vSetCTCB               (u16 Copy_u16CTCB                                         );
+void TIMER1_vSetICR1               (u16 Copy_u16ICR1                                         );
+u16 TIMER1_u16GetTimerCounterValue (void                                                     );
 
-void TIMER1_vInit(void);
-void TIMER1_vSetPreload(u16 Copy_u16Preload);
-void TIMER1_vSetCTCA(u16 Copy_u16CTCA);
-void TIMER1_vSetCTCB(u16 Copy_u16CTCB);
-void TIMER1_vSetICR1(u16 Copy_u16ICR1);
-u16 TIMER1_u16GetTimerCounterValue(void);
-
-void TIMER2_vInit(void);
-void TIMER2_vSetPreload(u8 Copy_u8Preload);
-void TIMER2_vSetCTC(u8 Copy_u8CTC);
-u8 TIMER2_u8GetTimerCounterValue(void);
+void TIMER2_vInit                  (void                                                     );
+void TIMER2_vSetPreload            (u8 Copy_u8Preload                                        );
+void TIMER2_vSetCTC                (u8 Copy_u8CTC                                            );
+u8 TIMER2_u8GetTimerCounterValue   (void                                                     );
 
 /*******************************/
 
-void TIMER_vICUInitEnable(void);
-u8 TIMER_vICUSetTriggerEdge(u8 Copy_u8Edge);
-void TIMER_vICUEnableInterrupt(void);
-void TIMER_vICUDisableInterrupt(void);
-u16 TIMER_u16GetICR(void);
+void TIMER_vICUInitEnable           (void                                                    );
+u8 TIMER_vICUSetTriggerEdge         (u8 Copy_u8Edge                                          );
+void TIMER_vICUEnableInterrupt      (void                                                    );
+void TIMER_vICUDisableInterrupt     (void                                                    );
+u16 TIMER_u16GetICR                 (void                                                    );
 
-void TIMER_vSetPWM(u16 Copy_u16CompareValue);
-u8 TIMER_u8GetPWMOnPeriod(u16 *Copy_pu16OnPeriod);
-u8 TIMER_u8GetPWMTotalPeriod(u32 *Copy_pu32TotalPeriod);
-u8 TIMER_u8GetPWMDutyCycle(u8 *Copy_pu8DutyCycle);
-void TIMER_vWDTSleep(void);
-void TIMER_vWDTEnable(void);
-void TIMER_vWDTDisable(void);
+void TIMER_vSetPWM                  (u16 Copy_u16CompareValue                                );
+u8 TIMER_u8GetPWMOnPeriod           (u16 *Copy_pu16OnPeriod                                  );
+u8 TIMER_u8GetPWMTotalPeriod        (u32 *Copy_pu32TotalPeriod                               );
+u8 TIMER_u8GetPWMDutyCycle          (u8 *Copy_pu8DutyCycle                                   );
+void TIMER_vWDTSleep                (void                                                    );
+void TIMER_vWDTEnable               (void                                                    );
+void TIMER_vWDTDisable              (void                                                    );
 
-u8 TIMER_u8SetCallBack(void (*Copy_pvCallBackFunc)(void), u8 Copy_u8VectorID);
+u8 TIMER_u8SetCallBack              (void (*Copy_pvCallBackFunc)(void), u8 Copy_u8VectorID   );
 
 
 

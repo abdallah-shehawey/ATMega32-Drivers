@@ -38,9 +38,9 @@ typedef struct
   u8 EnablePin  ;   // SSD_PIN0, SSD_PIN1, SSD_PIN2, SSD_PIN3, SSD_PIN4, SSD_PIN5, SSD_PIN6, SSD_PIN7
 } SSD_config;
 
-void SSD_vInitDataPort   (SSD_config Configuration);
-void SSD_vSendNumber     (SSD_config Configuration, u8 Copy_u8Number);
-void SSD_vEnable         (SSD_config Configuration);
-void SSD_vDisable        (SSD_config Configuration);
+void SSD_vInitDataPort         (SSD_config Configuration);
+void SSD_vSendNumber           (SSD_config Configuration, u8 Copy_u8Number);
+void SSD_vEnable               (SSD_config Configuration);
+void SSD_vDisable              (SSD_config Configuration);
 
 #endif /* SSD_INTERFACE_H_ */

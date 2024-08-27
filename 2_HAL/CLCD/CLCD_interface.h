@@ -54,19 +54,19 @@
 
 /*___________________________________________________________________________________________________________________*/
 
-void CLCD_vInit                    (void                                );
-void CLCD_vSendData                (u8 Copy_u8Data                      );
-void CLCD_vSendCommand             (u8 Copy_u8Command                   );
-void CLCD_vClearScreen             (void);
-void CLCD_vSetPosition             (u8 Copy_u8ROW, u8 Copy_u8Col        );
+void CLCD_vInit                            (void                                );
+void CLCD_vSendData                        (u8 Copy_u8Data                      );
+void CLCD_vSendCommand                     (u8 Copy_u8Command                   );
+void CLCD_vClearScreen                     (void);
+void CLCD_vSetPosition                     (u8 Copy_u8ROW, u8 Copy_u8Col        );
 
-void CLCD_vSendString              (const u8 *Copy_u8PrtStrign          );
-void CLCD_vSendIntNumber           (s32 Copy_s32Number                  );
-void CLCD_vSendFloatNumber         (f64 Copy_f64Number                  );
+void CLCD_vSendString                      (const u8 *Copy_u8PrtStrign          );
+void CLCD_vSendIntNumber                   (s32 Copy_s32Number                  );
+void CLCD_vSendFloatNumber                 (f64 Copy_f64Number                  );
 
-void CLCD_voidShiftDisplayRight    (void                                );
-void CLCD_voidShiftDisplayLeft     (void                                );
+void CLCD_voidShiftDisplayRight            (void                                );
+void CLCD_voidShiftDisplayLeft             (void                                );
 
-void CLCD_vSendExtraChar           (u8 Copy_u8Row, u8 Copy_u8Col        );
+void CLCD_vSendExtraChar                   (u8 Copy_u8Row, u8 Copy_u8Col        );
 
 #endif /* CLCD_INTERFACE_H_ */

@@ -86,19 +86,19 @@ typedef struct
 
 void ADC_vInit(void);
 
-u8 ADC_u8GetResultSync(u8 Copy_u8Channel, u16 *Copy_pu16Result);
-u8 ADC_u8StartConversionAsynch(u8 Copy_u8Channel, u16 *Copy_pu16Reading, void (*Copy_pvNotificationFunc)(void));
-u8 ADC_u8StartChainAsynch(Chain_t *Copy_Chain);
+u8 ADC_u8GetResultSync                    (u8 Copy_u8Channel, u16 *Copy_pu16Result                                        );
+u8 ADC_u8StartConversionAsynch            (u8 Copy_u8Channel, u16 *Copy_pu16Reading, void (*Copy_pvNotificationFunc)(void));
+u8 ADC_u8StartChainAsynch                 (Chain_t *Copy_Chain);
 
-void ADC_vEnable(void);
-void ADC_vDisable(void);
-void ADC_vInterruptEnable(void);
-void ADC_vInterruptDisable(void);
+void ADC_vEnable                          (void                                                                           );
+void ADC_vDisable                         (void                                                                           );
+void ADC_vInterruptEnable                 (void                                                                           );
+void ADC_vInterruptDisable                (void                                                                           );
 
-u8 ADC_u8SetVoltageReference(u8 Copy_u8VREF);
-u8 ADC_u8SetPrescaler(u8 Copy_u8Prescaler);
-u8 ADC_u8SetAdjustment(u8 Copy_u8Adjust);
-u8 ADC_u8SetTriggerSource(u8 Copy_u8Trigger);
+u8 ADC_u8SetVoltageReference              (u8 Copy_u8VREF                                                                 );
+u8 ADC_u8SetPrescaler                     (u8 Copy_u8Prescaler                                                            );
+u8 ADC_u8SetAdjustment                    (u8 Copy_u8Adjust                                                               );
+u8 ADC_u8SetTriggerSource                 (u8 Copy_u8Trigger                                                              );
 
 
 #endif /* ADC_interface_H_ */

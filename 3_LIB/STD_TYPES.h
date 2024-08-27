@@ -22,21 +22,21 @@ typedef float                  f32 ;
 typedef double                 f64 ;
 
 
-#define NULL 0
+#define NULL                   0
 
-#define ENABLE		1
-#define DISABLE		0
+#define ENABLE                 1
+#define DISABLE                0
 
 
 /* Func States  */
-#define IDLE 			0
-#define BUSY			1
+#define IDLE                   0
+#define BUSY                   1
 
 /* My States  */
-#define OK           	0
-#define NOK          	1
-#define NULL_POINTER 	2
-#define BUSY_STATE	 	3
-#define TIMEOUT_STATE   4
+#define OK                     0
+#define NOK                    1
+#define NULL_POINTER           2
+#define BUSY_STATE             3
+#define TIMEOUT_STATE          4
 
 #endif /* STD_TYPES_H_ */
