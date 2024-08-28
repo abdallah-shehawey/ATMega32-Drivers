@@ -10,6 +10,8 @@
 #ifndef _DIO_INTERFACE_H_
 #define _DIO_INTERFACE_H_
 
+#include "STD_TYPES.h"
+
 typedef enum // it should be before functions prototypes
 {
   DIO_NOK,
@@ -57,25 +59,25 @@ typedef enum // it should be before functions prototypes
 #define PUD                 2
 
 /*IO Pins*/
-DIO_errorStatus DIO_enumSetPinDir          (u8 Copy_u8PORT, u8 Copy_u8PIN, u8 Copy_u8Direction    );
-DIO_errorStatus DIO_enumWritePinVal        (u8 Copy_u8PORT, u8 Copy_u8PIN, u8 Copy_u8Value        );
-DIO_errorStatus DIO_enumReadPinVal         (u8 Copy_u8PORT, u8 Copy_u8PIN, u8 *Copy_Pu8Data       );
-DIO_errorStatus DIO_enumTogglePinVal       (u8 Copy_u8PORT, u8 Copy_u8PIN                         );
+DIO_errorStatus DIO_enumSetPinDir          (u8 Copy_u8PORT, u8 Copy_u8PIN, u8 Copy_u8Direction);
+DIO_errorStatus DIO_enumWritePinVal        (u8 Copy_u8PORT, u8 Copy_u8PIN, u8 Copy_u8Value);
+DIO_errorStatus DIO_enumReadPinVal         (u8 Copy_u8PORT, u8 Copy_u8PIN, u8 *Copy_Pu8Data);
+DIO_errorStatus DIO_enumTogglePinVal       (u8 Copy_u8PORT, u8 Copy_u8PIN);
 
 /*Internal Pull UP*/
 DIO_errorStatus DIO_enumConnectPullUp      (u8 Copy_u8PORT, u8 Copy_u8PIN, u8 Copy_u8ConnectPullup);
 
 /*IO Ports*/
-DIO_errorStatus DIO_enumSetPortDir         (u8 Copy_u8PORT, u8 Copy_u8Direction                   );
-DIO_errorStatus DIO_enumWritePortVal       (u8 Copy_u8PORT, u8 portValue                          );
-DIO_errorStatus DIO_enumReadPorVal         (u8 Copy_u8PORT,u8 *Copy_PtrData                       );
+DIO_errorStatus DIO_enumSetPortDir         (u8 Copy_u8PORT, u8 Copy_u8Direction);
+DIO_errorStatus DIO_enumWritePortVal       (u8 Copy_u8PORT, u8 portValue);
+DIO_errorStatus DIO_enumReadPorVal         (u8 Copy_u8PORT,u8 *Copy_PtrData);
 DIO_errorStatus DIO_enumTogglePortValue    (u8 Copy_u8PORT);
 
 /*IO Nibbles*/
-DIO_errorStatus DIO_vSetLowNibbleDir       (u8 Copy_u8PORT, u8 value                              );
-DIO_errorStatus DIO_vSetHighNibbleDir      (u8 Copy_u8PORT, u8 value                              );
-DIO_errorStatus DIO_vWriteLowNibble        (u8 Copy_u8PORT, u8 value                              );
-DIO_errorStatus DIO_vWriteHighNibble       (u8 Copy_u8PORT, u8 value                              );
+DIO_errorStatus DIO_vSetLowNibbleDir       (u8 Copy_u8PORT, u8 value);
+DIO_errorStatus DIO_vSetHighNibbleDir      (u8 Copy_u8PORT, u8 value);
+DIO_errorStatus DIO_vWriteLowNibble        (u8 Copy_u8PORT, u8 value);
+DIO_errorStatus DIO_vWriteHighNibble       (u8 Copy_u8PORT, u8 value);
 
 
 #endif

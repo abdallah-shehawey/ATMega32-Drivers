@@ -10,8 +10,8 @@
 #include "STD_MACROS.h"
 #include "STD_TYPES.h"
 
-#include "DIO_private.h"
 #include "DIO_interface.h"
+#include "DIO_private.h"
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<                          IO Pins                     >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -38,16 +38,16 @@ DIO_errorStatus DIO_enumSetPinDir(u8 Copy_u8PORT, u8 Copy_u8PIN, u8 Copy_u8Direc
       switch (Copy_u8PORT)
       {
       case DIO_PORTA:
-        SET_BIT(DDRA, Copy_u8PIN);
+        SET_BIT(DDRA_REG, Copy_u8PIN);
         break;
       case DIO_PORTB:
-        SET_BIT(DDRB, Copy_u8PIN);
+        SET_BIT(DDRB_REG, Copy_u8PIN);
         break;
       case DIO_PORTC:
-        SET_BIT(DDRC, Copy_u8PIN);
+        SET_BIT(DDRC_REG, Copy_u8PIN);
         break;
       case DIO_PORTD:
-        SET_BIT(DDRD, Copy_u8PIN);
+        SET_BIT(DDRD_REG, Copy_u8PIN);
         break;
       }
     }
@@ -57,16 +57,16 @@ DIO_errorStatus DIO_enumSetPinDir(u8 Copy_u8PORT, u8 Copy_u8PIN, u8 Copy_u8Direc
       switch (Copy_u8PORT)
       {
       case DIO_PORTA:
-        CLR_BIT(DDRA, Copy_u8PIN);
+        CLR_BIT(DDRA_REG, Copy_u8PIN);
         break;
       case DIO_PORTB:
-        CLR_BIT(DDRB, Copy_u8PIN);
+        CLR_BIT(DDRB_REG, Copy_u8PIN);
         break;
       case DIO_PORTC:
-        CLR_BIT(DDRC, Copy_u8PIN);
+        CLR_BIT(DDRC_REG, Copy_u8PIN);
         break;
       case DIO_PORTD:
-        CLR_BIT(DDRD, Copy_u8PIN);
+        CLR_BIT(DDRD_REG, Copy_u8PIN);
         break;
       }
     }
@@ -103,16 +103,16 @@ DIO_errorStatus DIO_enumWritePinVal(u8 Copy_u8PORT, u8 Copy_u8PIN, u8 Copy_u8Val
       switch (Copy_u8PORT)
       {
       case DIO_PORTA:
-        SET_BIT(PORTA, Copy_u8PIN);
+        SET_BIT(PORTA_REG, Copy_u8PIN);
         break;
       case DIO_PORTB:
-        SET_BIT(PORTB, Copy_u8PIN);
+        SET_BIT(PORTB_REG, Copy_u8PIN);
         break;
       case DIO_PORTC:
-        SET_BIT(PORTC, Copy_u8PIN);
+        SET_BIT(PORTC_REG, Copy_u8PIN);
         break;
       case DIO_PORTD:
-        SET_BIT(PORTD, Copy_u8PIN);
+        SET_BIT(PORTD_REG, Copy_u8PIN);
         break;
       }
     }
@@ -122,16 +122,16 @@ DIO_errorStatus DIO_enumWritePinVal(u8 Copy_u8PORT, u8 Copy_u8PIN, u8 Copy_u8Val
       switch (Copy_u8PORT)
       {
       case DIO_PORTA:
-        CLR_BIT(PORTA, Copy_u8PIN);
+        CLR_BIT(PORTA_REG, Copy_u8PIN);
         break;
       case DIO_PORTB:
-        CLR_BIT(PORTB, Copy_u8PIN);
+        CLR_BIT(PORTB_REG, Copy_u8PIN);
         break;
       case DIO_PORTC:
-        CLR_BIT(PORTC, Copy_u8PIN);
+        CLR_BIT(PORTC_REG, Copy_u8PIN);
         break;
       case DIO_PORTD:
-        CLR_BIT(PORTD, Copy_u8PIN);
+        CLR_BIT(PORTD_REG, Copy_u8PIN);
         break;
       }
     }
@@ -165,16 +165,16 @@ DIO_errorStatus DIO_enumReadPinVal(u8 Copy_u8PORT, u8 Copy_u8PIN, u8 *Copy_Pu8Da
     switch (Copy_u8PORT)
     {
     case DIO_PORTA:
-      *Copy_Pu8Data = READ_BIT(PINA, Copy_u8PIN);
+      *Copy_Pu8Data = READ_BIT(PINA_REG, Copy_u8PIN);
       break;
     case DIO_PORTB:
-      *Copy_Pu8Data = READ_BIT(PINB, Copy_u8PIN);
+      *Copy_Pu8Data = READ_BIT(PINB_REG, Copy_u8PIN);
       break;
     case DIO_PORTC:
-      *Copy_Pu8Data = READ_BIT(PINC, Copy_u8PIN);
+      *Copy_Pu8Data = READ_BIT(PINC_REG, Copy_u8PIN);
       break;
     case DIO_PORTD:
-      *Copy_Pu8Data = READ_BIT(PIND, Copy_u8PIN);
+      *Copy_Pu8Data = READ_BIT(PIND_REG, Copy_u8PIN);
       break;
     }
   }
@@ -203,16 +203,16 @@ DIO_errorStatus DIO_enumTogglePinVal(u8 Copy_u8PORT, u8 Copy_u8PIN)
     switch (Copy_u8PORT)
     {
     case DIO_PORTA:
-      TOG_BIT(PORTA, Copy_u8PIN);
+      TOG_BIT(PORTA_REG, Copy_u8PIN);
       break;
     case DIO_PORTB:
-      TOG_BIT(PORTB, Copy_u8PIN);
+      TOG_BIT(PORTB_REG, Copy_u8PIN);
       break;
     case DIO_PORTC:
-      TOG_BIT(PORTC, Copy_u8PIN);
+      TOG_BIT(PORTC_REG, Copy_u8PIN);
       break;
     case DIO_PORTD:
-      TOG_BIT(PORTD, Copy_u8PIN);
+      TOG_BIT(PORTD_REG, Copy_u8PIN);
       break;
     }
   }
@@ -245,52 +245,52 @@ DIO_errorStatus DIO_enumConnectPullUp(u8 Copy_u8PORT, u8 Copy_u8PIN, u8 Copy_u8C
     case DIO_PORTA:
       if (Copy_u8ConnectPullup == DIO_PIN_HIGH)
       {
-        CLR_BIT(SFIOR, PUD); // It's default is zero
-        CLR_BIT(DDRA, Copy_u8PIN);
-        SET_BIT(PORTA, Copy_u8PIN);
+        CLR_BIT(SFIOR_REG, PUD); // It's default is zero
+        CLR_BIT(DDRA_REG, Copy_u8PIN);
+        SET_BIT(PORTA_REG, Copy_u8PIN);
       }
       else
       {
-        CLR_BIT(PORTA, Copy_u8PIN);
+        CLR_BIT(PORTA_REG, Copy_u8PIN);
       }
       break;
       /* Connect or disconnect the pull up resistance to the given pin in port B */
     case DIO_PORTB:
       if (Copy_u8ConnectPullup == DIO_PIN_HIGH)
       {
-        CLR_BIT(SFIOR, PUD);
-        CLR_BIT(DDRB, Copy_u8PIN);
-        SET_BIT(PORTB, Copy_u8PIN);
+        CLR_BIT(SFIOR_REG, PUD);
+        CLR_BIT(DDRB_REG, Copy_u8PIN);
+        SET_BIT(PORTB_REG, Copy_u8PIN);
       }
       else
       {
-        CLR_BIT(PORTB, Copy_u8PIN);
+        CLR_BIT(PORTB_REG, Copy_u8PIN);
       }
       break;
       /* Connect or disconnect the pull up resistance to the given pin in port C */
     case DIO_PORTC:
       if (Copy_u8ConnectPullup == DIO_PIN_HIGH)
       {
-        CLR_BIT(SFIOR, PUD);
-        CLR_BIT(DDRC, Copy_u8PIN);
-        SET_BIT(PORTC, Copy_u8PIN);
+        CLR_BIT(SFIOR_REG, PUD);
+        CLR_BIT(DDRC_REG, Copy_u8PIN);
+        SET_BIT(PORTC_REG, Copy_u8PIN);
       }
       else
       {
-        CLR_BIT(PORTC, Copy_u8PIN);
+        CLR_BIT(PORTC_REG, Copy_u8PIN);
       }
       break;
       /* Connect or disconnect the pull up resistance to the given pin in port D */
     case DIO_PORTD:
       if (Copy_u8ConnectPullup == DIO_PIN_HIGH)
       {
-        CLR_BIT(SFIOR, PUD);
-        CLR_BIT(DDRD, Copy_u8PIN);
-        SET_BIT(PORTD, Copy_u8PIN);
+        CLR_BIT(SFIOR_REG, PUD);
+        CLR_BIT(DDRD_REG, Copy_u8PIN);
+        SET_BIT(PORTD_REG, Copy_u8PIN);
       }
       else
       {
-        CLR_BIT(PORTD, Copy_u8PIN);
+        CLR_BIT(PORTD_REG, Copy_u8PIN);
       }
       break;
     }
@@ -323,16 +323,16 @@ DIO_errorStatus DIO_enumSetPortDir(u8 Copy_u8PORT, u8 Copy_u8Direction)
     switch (Copy_u8PORT)
     {
     case DIO_PORTA:
-      DDRA = Copy_u8Direction;
+      DDRA_REG = Copy_u8Direction;
       break;
     case DIO_PORTB:
-      DDRB = Copy_u8Direction;
+      DDRB_REG = Copy_u8Direction;
       break;
     case DIO_PORTC:
-      DDRC = Copy_u8Direction;
+      DDRC_REG = Copy_u8Direction;
       break;
     case DIO_PORTD:
-      DDRD = Copy_u8Direction;
+      DDRD_REG = Copy_u8Direction;
       break;
     default:
       LOC_enumState = DIO_NOK;
@@ -361,16 +361,16 @@ DIO_errorStatus DIO_enumWritePortVal(u8 Copy_u8PORT, u8 Copy_u8Value)
     switch (Copy_u8PORT)
     {
     case DIO_PORTA:
-      PORTA = Copy_u8Value;
+      PORTA_REG= Copy_u8Value;
       break;
     case DIO_PORTB:
-      PORTB = Copy_u8Value;
+      PORTB_REG = Copy_u8Value;
       break;
     case DIO_PORTC:
-      PORTC = Copy_u8Value;
+      PORTC_REG = Copy_u8Value;
       break;
     case DIO_PORTD:
-      PORTD = Copy_u8Value;
+      PORTD_REG = Copy_u8Value;
       break;
     default:
       LOC_enumState = DIO_NOK;
@@ -400,16 +400,16 @@ DIO_errorStatus DIO_enumReadPorVal(u8 Copy_u8PORT, u8 *Copy_Pu8Data)
     switch (Copy_u8PORT)
     {
     case DIO_PORTA:
-      *Copy_Pu8Data = PINA;
+      *Copy_Pu8Data = PINA_REG;
       break;
     case DIO_PORTB:
-      *Copy_Pu8Data = PINB;
+      *Copy_Pu8Data = PINB_REG;
       break;
     case DIO_PORTC:
-      *Copy_Pu8Data = PINC;
+      *Copy_Pu8Data = PINC_REG;
       break;
     case DIO_PORTD:
-      *Copy_Pu8Data = PIND;
+      *Copy_Pu8Data = PIND_REG;
       break;
     default:
       LOC_enumState = DIO_NOK;
@@ -439,16 +439,16 @@ DIO_errorStatus DIO_enumTogglePortValue(u8 Copy_u8PORT)
     switch (Copy_u8PORT)
     {
     case DIO_PORTA:
-      PORTA = ~PORTA;
+      PORTA_REG = ~PORTA_REG;
       break;
     case DIO_PORTB:
-      PORTB = ~PORTB;
+      PORTB_REG = ~PORTB_REG;
       break;
     case DIO_PORTC:
-      PORTC = ~PORTC;
+      PORTC_REG = ~PORTC_REG;
       break;
     case DIO_PORTD:
-      PORTD = ~PORTD;
+      PORTD_REG = ~PORTD_REG;
       break;
     }
   }
@@ -484,20 +484,20 @@ DIO_errorStatus DIO_vWriteLowNibble(u8 Copy_u8PORT, u8 value)
     switch (Copy_u8PORT)
     {
     case DIO_PORTA:
-      PORTA &= 0xF0; // Set only the high nibble of the port A by the given value
-      PORTA |= value;
+      PORTA_REG &= 0xF0; // Set only the high nibble of the port A by the given value
+      PORTA_REG |= value;
       break;
     case DIO_PORTB:
-      PORTB &= 0xF0; // Set only the high nibble of the port B by the given value
-      PORTB |= value;
+      PORTB_REG &= 0xF0; // Set only the high nibble of the port B by the given value
+      PORTB_REG |= value;
       break;
     case DIO_PORTC:
-      PORTC &= 0xF0; // Set only the high nibble of the port C by the given value
-      PORTC |= value;
+      PORTC_REG &= 0xF0; // Set only the high nibble of the port C by the given value
+      PORTC_REG |= value;
       break;
     case DIO_PORTD:
-      PORTD &= 0xF0; // Set only the high nibble of the port D by the given value
-      PORTD |= value;
+      PORTD_REG &= 0xF0; // Set only the high nibble of the port D by the given value
+      PORTD_REG |= value;
       break;
     default:
       break;
@@ -542,20 +542,20 @@ DIO_errorStatus DIO_vWriteHighNibble(u8 Copy_u8PORT, u8 value)
     switch (Copy_u8PORT)
     {
     case DIO_PORTA:
-      PORTA &= 0x0F;
-      PORTA |= value;
+      PORTA_REG &= 0x0F;
+      PORTA_REG|= value;
       break;
     case DIO_PORTB:
-      PORTB &= 0x0F;
-      PORTB |= value;
+      PORTB_REG &= 0x0F;
+      PORTB_REG |= value;
       break;
     case DIO_PORTC:
-      PORTC &= 0x0F;
-      PORTC |= value;
+      PORTC_REG &= 0x0F;
+      PORTC_REG |= value;
       break;
     case DIO_PORTD:
-      PORTD &= 0x0F;
-      PORTD |= value;
+      PORTD_REG &= 0x0F;
+      PORTD_REG |= value;
       break;
     default:
       break;
@@ -581,20 +581,20 @@ DIO_errorStatus DIO_vSetLowNibbleDir(u8 Copy_u8PORT, u8 value)
     switch (Copy_u8PORT)
     {
     case DIO_PORTA:
-      DDRA &= 0xF0; // Set only the high nibble of the port A by the given value
-      DDRA |= value;
+      DDRA_REG &= 0xF0; // Set only the high nibble of the port A by the given value
+      DDRA_REG |= value;
       break;
     case DIO_PORTB:
-      DDRB &= 0xF0; // Set only the high nibble of the port B by the given value
-      DDRB |= value;
+      DDRB_REG &= 0xF0; // Set only the high nibble of the port B by the given value
+      DDRB_REG |= value;
       break;
     case DIO_PORTC:
-      DDRC &= 0xF0; // Set only the high nibble of the port C by the given value
-      DDRC |= value;
+      DDRC_REG &= 0xF0; // Set only the high nibble of the port C by the given value
+      DDRC_REG |= value;
       break;
     case DIO_PORTD:
-      DDRD &= 0xF0; // Set only the high nibble of the port D by the given value
-      DDRD |= value;
+      DDRD_REG &= 0xF0; // Set only the high nibble of the port D by the given value
+      DDRD_REG|= value;
       break;
     default:
       break;
@@ -621,20 +621,20 @@ DIO_errorStatus DIO_vSetHighNibbleDir(u8 Copy_u8PORT, u8 value)
     switch (Copy_u8PORT)
     {
     case DIO_PORTA:
-      DDRA &= 0x0F;
-      DDRA |= value;
+      DDRA_REG &= 0x0F;
+      DDRA_REG |= value;
       break;
     case DIO_PORTB:
-      DDRB &= 0x0F;
-      DDRB |= value;
+      DDRB_REG &= 0x0F;
+      DDRB_REG |= value;
       break;
     case DIO_PORTC:
-      DDRC &= 0x0F;
-      DDRC |= value;
+      DDRC_REG &= 0x0F;
+      DDRC_REG |= value;
       break;
     case DIO_PORTD:
-      DDRD &= 0x0F;
-      DDRD |= value;
+      DDRD_REG &= 0x0F;
+      DDRD_REG |= value;
       break;
     default:
       break;
