@@ -32,7 +32,7 @@ void SSD_vInitDataPort(SSD_config Configuration)
   }
   else if (Configuration.Nibble == SSD_HIGH_NIBBLE)
   {
-    DIO_vSetHighNibbleDir(Configuration.DataPort, 0xF0);
+    DIO_vSetHighNibbleDir(Configuration.DataPort, 0x0F);
   }
 }
 
