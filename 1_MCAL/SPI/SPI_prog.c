@@ -10,6 +10,8 @@
 #include "STD_MACROS.h"
 #include "STD_TYPES.h"
 
+#include "DIO_interface.h"
+
 #include "SPI_interface.h"
 #include "SPI_config.h"
 #include "SPI_private.h"
@@ -48,8 +50,11 @@ void SPI_vInit(void)
 /*Master/Slave Select*/
 #if SPI_MASTER_SLAVE_SELECT == SPI_MASTER
 	SET_BIT(SPCR, SPCR_MSTR);
+	DIO_enumSetPinDir(DIO_PORTB, DIO_PIN5, DIO_PIN_OUTPUT);
+	DIO_enumSetPinDir(DIO_PORTB, DIO_PIN7, DIO_PIN_OUTPUT);
 #elif SPI_MASTER_SLAVE_SELECT == SPI_SLAVE
 	CLR_BIT(SPCR, SPCR_MSTR);
+	DIO_enumSetPinDir(DIO_PORTB, DIO_PIN6, DIO_PIN_OUTPUT);
 #else
 #error "wrong SPI_MASTER_SLAVE_SELECT config"
 #endif
@@ -321,8 +326,7 @@ u8 SPI_u8Tranceive(u8 Copy_u8TData, u8 *Copy_u8RData)
 
 		SPDR = Copy_u8TData;
 
-		while (((READ_BIT(SPSR, SPSR_SPIF)) == 0) &&
-		      (Local_u32TimeoutCounter < SPI_u32TIMEOUT))
+		while (((READ_BIT(SPSR, SPSR_SPIF)) == 0) && (Local_u32TimeoutCounter < SPI_u32TIMEOUT))
 		{
 			Local_u32TimeoutCounter++;
 		}
