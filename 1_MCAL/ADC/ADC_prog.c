@@ -238,7 +238,6 @@ u8 ADC_u8VoltageReference(u8 Copy_u8VREF)
   u8 Local_u8ErrorState = NOK;
   if ((Copy_u8VREF == AREF) || (Copy_u8VREF == AVCC) || (Copy_u8VREF == INTERNAL_2_56))
   {
-
     ADMUX &= 0b00111111;
     ADMUX |= (Copy_u8VREF << 6);
     Local_u8ErrorState = OK;
