@@ -116,7 +116,8 @@ void UserName_Set(void)
 	CLCD_SetPositionFuncName(1, 5);
 	CLCD_SendStringFuncName("Set UserName");
 	CLCD_SetPositionFuncName(2, 1);
-	CLCD_SendStringFuncName("Maximum char : 20");
+	CLCD_SendStringFuncName("Maximum char : ");
+	CLCD_SendIntNumberFuncName(USERNAME_MAX_LENGTH);
 	CLCD_SendExtraCharFuncName(4, 15); // To Send Enter Symbol
 	CLCD_SetPositionFuncName(4, 16);
 	CLCD_SendStringFuncName(" : OK");
@@ -127,7 +128,9 @@ void UserName_Set(void)
 #elif OUTPUT_SCREEN == TERMINAL_OUTPUT
 	USART_SendStringFuncName("Set UserName");
 	USART_SendDataFuncName(0X0D);
-	USART_SendStringFuncName("Maximum char : 20");
+	USART_SendStringFuncName("Maximum char : ");
+	USART_SendDataFuncName((USERNAME_MAX_LENGTH / 10) + 48);
+	USART_SendDataFuncName((USERNAME_MAX_LENGTH % 10) + 48);
 	USART_SendDataFuncName(0X0D);
 #endif
 
@@ -144,7 +147,7 @@ void UserName_Set(void)
 			CLCD_SendStringFuncName("UserName Must be");
 			CLCD_SetPositionFuncName(2, 1);
 			CLCD_SendStringFuncName("More than ");
-			CLCD_SendIntNumberFuncName(USERNAME_MIN_LENGTH);
+			CLCD_SendDataFuncName((USERNAME_MIN_LENGTH - 1) + 48);
 			CLCD_SendStringFuncName(" Char");
 			CLCD_SendExtraCharFuncName(4, 1);
 			CLCD_SetPositionFuncName(4, 2);
@@ -176,14 +179,17 @@ void UserName_Set(void)
 			CLCD_SetPositionFuncName(1, 3);
 			CLCD_SendStringFuncName("Re Set UserName");
 			CLCD_SetPositionFuncName(2, 1);
-			CLCD_SendStringFuncName("Maximum char : 20");
+			CLCD_SendStringFuncName("Maximum char : ");
+			CLCD_SendIntNumberFuncName(USERNAME_MAX_LENGTH);
 			CLCD_SendExtraCharFuncName(4, 15); // To Send Enter Symbol
 			CLCD_SetPositionFuncName(4, 16);
 			CLCD_SendStringFuncName(" : OK");
 			CLCD_SetPositionFuncName(3, 1);
 
 #elif OUTPUT_SCREEN == TERMINAL_OUTPUT
-			USART_SendStringFuncName("UserName Must be More than 5 Char");
+			USART_SendStringFuncName("UserName Must be More than ");
+			USART_SendDataFuncName((USERNAME_MIN_LENGTH - 1) + 48);
+			USART_SendStringFuncName(" Char");
 			USART_SendDataFuncName(0X0D);
 			USART_SendStringFuncName("Re Enter UserName");
 			USART_SendDataFuncName(0X0D);
@@ -218,7 +224,7 @@ void UserName_Set(void)
 				}
 			}
 			// if UserName length is less than 20 user can write and enter and do any thing
-			else if (KPD_Press != NOTPRESSED && UserName_Length < 20)
+			else if (KPD_Press != NOTPRESSED && UserName_Length < USERNAME_MAX_LENGTH)
 			{
 				// if user press enter
 				if (KPD_Press == '=')
@@ -246,7 +252,7 @@ void UserName_Set(void)
 				}
 			}
 			// if user name length is more than 20 do no thing exept enter and delete
-			else if (KPD_Press != NOTPRESSED && UserName_Length >= 20)
+			else if (KPD_Press != NOTPRESSED && UserName_Length >= USERNAME_MAX_LENGTH)
 			{
 				if (KPD_Press == '=')
 				{
@@ -294,7 +300,7 @@ void UserName_Set(void)
 				}
 			}
 			// if UserName length is less than 20 user can write and enter and do any thing
-			else if (Error_State == OK && UserName_Length < 20)
+			else if (Error_State == OK && UserName_Length < USERNAME_MAX_LENGTH)
 			{
 				// if user press enter
 				if (KPD_Press == 0x0D || KPD_Press == 0x0F)
@@ -322,7 +328,7 @@ void UserName_Set(void)
 				}
 			}
 			// if user name length is more than 20 do no thing exept enter and delete
-			else if (Error_State == OK && UserName_Length >= 20)
+			else if (Error_State == OK && UserName_Length >= USERNAME_MAX_LENGTH)
 			{
 				if (KPD_Press == 0x0D || KPD_Press == 0x0F)
 				{
@@ -364,15 +370,19 @@ void PassWord_Set(void)
 	CLCD_ClearScreenFuncName();
 	CLCD_SendStringFuncName("Set PassWord");
 	CLCD_SetPositionFuncName(2, 1);
-	CLCD_SendStringFuncName("Maximum char : 20");
+	CLCD_SendStringFuncName("Maximum char : ");
+	CLCD_SendIntNumberFuncName(PASSWORD_MAX_LENGTH);
 	CLCD_SendExtraCharFuncName(4, 15); // To Send Enter Symbol
 	CLCD_SetPositionFuncName(4, 16);
 	CLCD_SendStringFuncName(" : OK");
 	CLCD_SetPositionFuncName(3, 1);
+
 #elif OUTPUT_SCREEN == TERMINAL_OUTPUT
 	USART_SendStringFuncName("Set PassWord");
 	USART_SendDataFuncName(0X0D);
-	USART_SendStringFuncName("Maximum char : 20");
+	USART_SendStringFuncName("Maximum char : ");
+	USART_SendDataFuncName((PASSWORD_MAX_LENGTH / 10) + 48);
+	USART_SendDataFuncName((PASSWORD_MAX_LENGTH % 10) + 48);
 	USART_SendDataFuncName(0X0D);
 #endif
 
@@ -388,7 +398,7 @@ void PassWord_Set(void)
 			CLCD_SendStringFuncName("PassWord Must be");
 			CLCD_SetPositionFuncName(2, 1);
 			CLCD_SendStringFuncName("More than ");
-			CLCD_SendIntNumberFuncName(PASSWORD_MIN_LENGTH);
+			CLCD_SendDataFuncName((PASSWORD_MIN_LENGTH - 1) + 48);
 			CLCD_SendStringFuncName(" Char");
 			CLCD_SendExtraCharFuncName(4, 1);
 			CLCD_SetPositionFuncName(4, 2);
@@ -420,18 +430,23 @@ void PassWord_Set(void)
 			CLCD_SetPositionFuncName(1, 5);
 			CLCD_SendStringFuncName("Set PassWord");
 			CLCD_SetPositionFuncName(2, 1);
-			CLCD_SendStringFuncName("Maximum char : 20");
+			CLCD_SendStringFuncName("Maximum char : ");
+			CLCD_SendIntNumberFuncName(PASSWORD_MAX_LENGTH);
 			CLCD_SendExtraCharFuncName(4, 15); // To Send Enter Symbol
 			CLCD_SetPositionFuncName(4, 16);
 			CLCD_SendStringFuncName(" : OK");
 			CLCD_SetPositionFuncName(3, 1);
 #elif OUTPUT_SCREEN == TERMINAL_OUTPUT
-			USART_SendStringFuncName("PassWord Must be More than 5 Char");
+			USART_SendStringFuncName("PassWord Must be More than ");
+			USART_SendDataFuncName((PASSWORD_MIN_LENGTH - 1) + 48);
+			USART_SendStringFuncName(" Char");
 			USART_SendDataFuncName(0X0D);
 
 			USART_SendStringFuncName("Re Set PassWord");
 			USART_SendDataFuncName(0X0D);
-			USART_SendStringFuncName("Maximum char : 20");
+			USART_SendStringFuncName("Maximum char : ");
+			USART_SendDataFuncName((PASSWORD_MAX_LENGTH / 10) + 48);
+			USART_SendDataFuncName((PASSWORD_MAX_LENGTH % 10) + 48);
 			USART_SendDataFuncName(0X0D);
 #endif
 			PassWord_Length = 0;
@@ -468,7 +483,7 @@ void PassWord_Set(void)
 				}
 			}
 			// if UserName length is less than 20 user can write and enter and do any thing
-			else if (KPD_Press != NOTPRESSED && PassWord_Length < 20)
+			else if (KPD_Press != NOTPRESSED && PassWord_Length < PASSWORD_MAX_LENGTH)
 			{
 				// if user press enter
 				if (KPD_Press == '=')
@@ -497,7 +512,7 @@ void PassWord_Set(void)
 				}
 			}
 			// if user name length is more than 20 do no thing exept enter and delete
-			else if (KPD_Press != NOTPRESSED && PassWord_Length >= 20)
+			else if (KPD_Press != NOTPRESSED && PassWord_Length >= PASSWORD_MAX_LENGTH)
 			{
 				// if user press enter
 				if (KPD_Press == '=')
@@ -548,7 +563,7 @@ void PassWord_Set(void)
 				}
 			}
 			// if UserName length is less than 20 user can write and enter and do any thing
-			else if (Error_State == OK && PassWord_Length < 20)
+			else if (Error_State == OK && PassWord_Length < PASSWORD_MAX_LENGTH)
 			{
 				// if user press enter
 				if (KPD_Press == 0x0D || KPD_Press == 0x0F)
@@ -577,7 +592,7 @@ void PassWord_Set(void)
 				}
 			}
 			// if user name length is more than 20 do no thing exept enter and delete
-			else if (Error_State == OK && PassWord_Length >= 20)
+			else if (Error_State == OK && PassWord_Length >= PASSWORD_MAX_LENGTH)
 			{
 				// if user press enter
 				if (KPD_Press == 0x0D || KPD_Press == 0x0F)
@@ -654,7 +669,7 @@ void UserName_Check(void)
 				CheckLength++;
 			}
 		}
-		else if (KPD_Press != NOTPRESSED && CheckLength < 20)
+		else if (KPD_Press != NOTPRESSED && CheckLength < USERNAME_MAX_LENGTH)
 		{
 			// if user press enter
 			if (KPD_Press == '=')
@@ -683,7 +698,7 @@ void UserName_Check(void)
 			}
 		}
 		// if user name length is more than 20 do no thing exept enter and delete
-		else if (KPD_Press != NOTPRESSED && CheckLength >= 20)
+		else if (KPD_Press != NOTPRESSED && CheckLength >= USERNAME_MAX_LENGTH)
 		{
 			// if user press enter
 			if (KPD_Press == '=')
@@ -732,7 +747,7 @@ void UserName_Check(void)
 				CheckLength++;
 			}
 		}
-		else if (Error_State == OK && CheckLength < 20)
+		else if (Error_State == OK && CheckLength < USERNAME_MAX_LENGTH)
 		{
 			// if user press enter
 			if (KPD_Press == 0x0D || KPD_Press == 0x0F)
@@ -761,7 +776,7 @@ void UserName_Check(void)
 			}
 		}
 		// if user name length is more than 20 do no thing exept enter and delete
-		else if (Error_State == OK && CheckLength >= 20)
+		else if (Error_State == OK && CheckLength >= USERNAME_MAX_LENGTH)
 		{
 			// if user press enter
 			if (KPD_Press == 0x0D || KPD_Press == 0x0F)
@@ -860,7 +875,7 @@ void PassWord_Check(void)
 				CheckLength++;
 			}
 		}
-		else if (KPD_Press != NOTPRESSED && CheckLength < 20)
+		else if (KPD_Press != NOTPRESSED && CheckLength < PASSWORD_MAX_LENGTH)
 		{
 			if (KPD_Press == '=')
 			{
@@ -886,7 +901,7 @@ void PassWord_Check(void)
 			}
 		}
 		// if user name length is more than 20 do no thing exept enter and delete
-		else if (KPD_Press != NOTPRESSED && CheckLength >= 20)
+		else if (KPD_Press != NOTPRESSED && CheckLength >= PASSWORD_MAX_LENGTH)
 		{
 			if (KPD_Press == '=')
 			{
@@ -933,7 +948,7 @@ void PassWord_Check(void)
 				CheckLength++;
 			}
 		}
-		else if (Error_State == OK && CheckLength < 20)
+		else if (Error_State == OK && CheckLength < PASSWORD_MAX_LENGTH)
 		{
 			if (KPD_Press == 0x0D || KPD_Press == 0x0F)
 			{
@@ -959,7 +974,7 @@ void PassWord_Check(void)
 			}
 		}
 		// if user name length is more than 20 do no thing exept enter and delete
-		else if (Error_State == OK && CheckLength >= 20)
+		else if (Error_State == OK && CheckLength >= PASSWORD_MAX_LENGTH)
 		{
 			if (KPD_Press == 0x0D || KPD_Press == 0x0F)
 			{
