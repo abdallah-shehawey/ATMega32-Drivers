@@ -363,6 +363,7 @@ void UserName_Set(void)
 	{
 		UserName[i] = EEPROM_FunReadName(EEPROM_UserNameStartLocation + i);
 	}
+	UserName[UserName_Length] = '\0';
 }
 
 //======================================================================================================================================//
