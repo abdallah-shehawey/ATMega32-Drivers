@@ -53,6 +53,15 @@
 #define TIMER_T0_EXTERNAL_CLOCK_SOURCE_FALLING               6
 #define TIMER_T0_EXTERNAL_CLOCK_SOURCE_RISING                7
 
+	#define TIMER2_NO_CLOCK_SOURCE	 	                         0
+	#define TIMER2_NO_PRESCALER_FACTOR 	                       1
+	#define TIMER2_DIVISION_FACTOR_8	 	                       2
+	#define TIMER2_DIVISION_FACTOR_32                          3
+	#define TIMER2_DIVISION_FACTOR_64	                         4
+	#define TIMER2_DIVISION_FACTOR_128                         5
+	#define TIMER2_DIVISION_FACTOR_256	                       6
+	#define TIMER2_DIVISION_FACTOR_1024	                       7
+
 #define TIMER_PRESCALER_MASK                                 0b11111000 /* This Value also could use for bit masking */
 
 #define TIMER_NORMAL_MODE                                    0
@@ -95,6 +104,7 @@ void TIMER0_vInit                  (void                                        
 void TIMER0_vSetPreload            (u8 Copy_u8Preload                                        );
 void TIMER0_vSetCTC                (u8 Copy_u8CTC                                            );
 u8 TIMER0_u8GetTimerCounterValue   (void                                                     );
+void Timer0_vSetPrescaler(u8 Prescaler);
 
 void TIMER1_vInit                  (void                                                     );
 void TIMER1_vSetPreload            (u16 Copy_u16Preload                                      );
@@ -107,6 +117,7 @@ void TIMER2_vInit                  (void                                        
 void TIMER2_vSetPreload            (u8 Copy_u8Preload                                        );
 void TIMER2_vSetCTC                (u8 Copy_u8CTC                                            );
 u8 TIMER2_u8GetTimerCounterValue   (void                                                     );
+void Timer2_vSetPrescaler(u8 Prescaler);
 
 /*******************************/
 

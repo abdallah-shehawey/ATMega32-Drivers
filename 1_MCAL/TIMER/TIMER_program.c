@@ -7,8 +7,8 @@
  *
  */
 
-#include "STD_TYPES.h"
-#include "STD_MACROS.h"
+#include "../../APP_Layer/STD_TYPES.h"
+#include "../../APP_Layer/STD_MACROS.h"
 
 #include "TIMER_interface.h"
 #include "TIMER_private.h" /*You have to include TIMER_private.h before TIMER_config.h*/
@@ -569,9 +569,9 @@ void TIMER2_vInit(void)
 
 		#endif
 
-	/*Set the Required Prescaler*/
-	TCCR2 &= TIMER_PRESCALER_MASK ;
-	TCCR2 |= TIMER2_PRESCALER ;
+			/*Set the Required Prescaler*/
+		TCCR2 &= TIMER_PRESCALER_MASK ;
+		TCCR2 |= TIMER2_PRESCALER ;
 }
 
 /*******************************************************************************************************************/
@@ -637,7 +637,20 @@ void TIMER_vSetPWM(u16 Copy_u16CompareValue)
 {
 	OCR1A = Copy_u16CompareValue;
 }
-
+/*******************************************************************************************************************/
+void Timer2_vSetPrescaler(u8 Prescaler)
+{
+	/*Set the Required Prescaler*/
+	TCCR2 &= TIMER_PRESCALER_MASK ;
+	TCCR2 |= Prescaler ;
+}
+/*******************************************************************************************************************/
+void Timer0_vSetPrescaler(u8 Prescaler)
+{
+	/*Set the Required Prescaler*/
+	TCCR0 &= TIMER_PRESCALER_MASK ;
+	TCCR0 |= Prescaler ;
+}
 //----------------------------------------------------------------------------------------------------------------------------------------------------
 /*
 	Hint : This func for initial state of trigger (prebuild)
