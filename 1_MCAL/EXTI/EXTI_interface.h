@@ -10,7 +10,6 @@
 #ifndef EXTI_ITERFACE_H_
 #define EXTI_ITERFACE_H_
 
-#include "STD_TYPES.h"
 /*
   Hint : I assume those values 6,7,5 because the possition of each INT bits in the Reg (GICR,GIFR ....)
   I will use That for SET and CLR BITS

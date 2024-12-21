@@ -10,8 +10,6 @@
 #ifndef _DIO_INTERFACE_H_
 #define _DIO_INTERFACE_H_
 
-#include "STD_TYPES.h"
-
 typedef enum // it should be before functions prototypes
 {
   DIO_NOK,

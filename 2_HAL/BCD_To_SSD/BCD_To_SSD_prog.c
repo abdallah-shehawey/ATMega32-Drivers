@@ -7,10 +7,10 @@
  *
  */
 
-#include "STD_MACROS.h"
-#include "STD_TYPES.h"
+#include "../../APP_Layer/STD_TYPES.h"
+#include "../../APP_Layer/STD_MACROS.h"
 
-#include "DIO_interface.h"
+#include "../../MCAL/DIO/DIO_interface.h"
 
 #include "BCD_To_SSD_interface.h"
 #include "BCD_To_SSD_config.h"

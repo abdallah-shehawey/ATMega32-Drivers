@@ -19,7 +19,7 @@
   1- 4
   2- 8
 */
-#define CLCD_MODE 4
+#define CLCD_MODE 8
 
 #if CLCD_MODE == 4
 /*

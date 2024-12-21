@@ -7,8 +7,8 @@
  *
  */
 
-#include "STD_MACROS.h"
-#include "STD_TYPES.h"
+#include "../../APP_Layer/STD_TYPES.h"
+#include "../../APP_Layer/STD_MACROS.h"
 
 #include "DIO_interface.h"
 #include "DIO_private.h"

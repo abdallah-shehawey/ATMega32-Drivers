@@ -7,8 +7,8 @@
  *
  */
 
-#include "STD_TYPES.h"
-#include "STD_MACROS.h"
+#include "../../APP_Layer/STD_TYPES.h"
+#include "../../APP_Layer/STD_MACROS.h"
 
 #include "ADC_config.h"
 #include "ADC_interface.h"

@@ -7,12 +7,12 @@
  *
  */
 
-#include "STD_TYPES.h"
-#include "STD_MACROS.h"
+#include "../../APP_Layer/STD_TYPES.h"
+#include "../../APP_Layer/STD_MACROS.h"
 
 #include <util/delay.h>
 
-#include "DIO_interface.h"
+#include "../DIO/DIO_interface.h"
 
 #include "USART_config.h"
 #include "USART_interface.h"
