@@ -8,29 +8,29 @@
 
 #include <util/delay.h>
 
-#include "STD_TYPES.h"
-#include "STD_MACROS.h"
+#include "../STD_TYPES.h"
+#include "../STD_MACROS.h"
 
-#include "DIO_interface.h"
-#include "EEPROM_interface.h"
+#include "../../MCAL_Layer/DIO/DIO_interface.h"
+#include "../../MCAL_Layer/EEPROM/EEPROM_interface.h"
 
 #include "SECURITY_config.h"
 #include "SECURITY_interface.h"
 
 #if OUTPUT_SCREEN == CLCD_OUTPUT
 #if INPUT_DATA == KPD_INPUT
-#include "KPD_interface.h"
-#include "CLCD_interface.h"
+#include "../../HAL_Layer/KPD/KPD_interface.h"
+#include "../../HAL_Layer/CLCD/CLCD_interface.h"
 #elif INPUT_DATA == TERMINAL_INPUT
-#incldue "USART_interface.h"
-#include "CLCD_interface.h"
+#incldue "../../MCAL_Layer/USART/USART_interface.h"
+#include "../../HAL_Layer/CLCD/CLCD_interface.h"
 #endif
 #elif OUTPUT_SCREEN == TERMINAL_OUTPUT
 #if INPUT_DATA == KPD_INPUT
-#include "KPD_interface.h"
-#include "USART_interface.h"
+#include "../../HAL_Layer/KPD/KPD_interface.h"
+#include "../../MCAL_Layer/USART/USART_interface.h"
 #elif INPUT_DATA == TERMINAL_INPUT
-#include "USART_interface.h"
+#include "../../MCAL_Layer/USART/USART_interface.h"
 #endif
 #endif
 
