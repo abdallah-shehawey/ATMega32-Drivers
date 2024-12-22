@@ -52,7 +52,7 @@ volatile u8 UserName[20];
 void EEPROM_vInit(void)
 {
   /* To get Number of User Name and Password Length from EEPROM for second sign in */
-  UserName_Length = EEPROM_FunReadName(EEPROM_USNL_Location);
+  UserName_Length =  EEPROM_FunReadName(EEPROM_USNL_Location);
   PassWord_Length =  EEPROM_FunReadName(EEPROM_PWL_Location);
 
   /* To get number of tries left from EEPROM if it lost one of it Maximum */
