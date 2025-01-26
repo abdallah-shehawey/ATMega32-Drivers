@@ -3,7 +3,7 @@
  *
  *  Author : Abdallah Abdelmoemen Shehawey
  *  Layer  : APP_Layer
- *
+ *  Security system implementation for ATMega32 with EEPROM-based credential storage
  */
 
 #include <util/delay.h>
@@ -14,12 +14,11 @@
 #include "SECURITY_config.h"
 #include "SECURITY_interface.h"
 
-
 #include "../../MCAL_Layer/DIO/DIO_interface.h"
 #include "../../MCAL_Layer/EEPROM/EEPROM_interface.h"
 
 #if OUTPUT_SCREEN == CLCD_OUTPUT
-#if INPUT_DATA    == KPD_INPUT
+#if INPUT_DATA == KPD_INPUT
 #include "../../HAL_Layer/KPD/KPD_interface.h"
 #include "../../HAL_Layer/CLCD/CLCD_interface.h"
 #elif INPUT_DATA == TERMINAL_INPUT
@@ -35,7 +34,6 @@
 #endif
 #endif
 
-
 /*To get Username And Password Length from number of input */
 volatile u8 UserName_Length = 0, PassWord_Length = 0;
 /* to Know Number Of Tries */
@@ -49,11 +47,20 @@ volatile u8 UserName_Check_Flag = 1, PassWord_Check_Flag = 1;
 volatile u8 KPD_Press, Error_State = 1;
 volatile u8 UserName[20];
 
+/**
+ * @brief Initializes the security system from EEPROM state
+ * @details
+ * - Reads username and password lengths from EEPROM
+ * - Checks remaining login attempts
+ * - Handles first-time setup if no credentials exist
+ * - Loads username into memory for quick access
+ * - Triggers timeout if attempts were exhausted in previous session
+ */
 void EEPROM_vInit(void)
 {
   /* To get Number of User Name and Password Length from EEPROM for second sign in */
-  UserName_Length =  EEPROM_FunReadName(EEPROM_USNL_Location);
-  PassWord_Length =  EEPROM_FunReadName(EEPROM_PWL_Location);
+  UserName_Length = EEPROM_FunReadName(EEPROM_USNL_Location);
+  PassWord_Length = EEPROM_FunReadName(EEPROM_PWL_Location);
 
   /* To get number of tries left from EEPROM if it lost one of it Maximum */
   if (EEPROM_FunReadName(EEPROM_NoTries_Location) != NOTPRESSED)
@@ -111,6 +118,15 @@ void EEPROM_vInit(void)
 
 //======================================================================================================================================//
 
+/**
+ * @brief Sets up a new username with input validation
+ * @details
+ * - Displays username creation interface
+ * - Enforces minimum and maximum length requirements
+ * - Handles backspace and enter key inputs
+ * - Stores valid username in EEPROM
+ * - Provides feedback for invalid entries
+ */
 void UserName_Set(void)
 {
 #if OUTPUT_SCREEN == CLCD_OUTPUT
@@ -131,8 +147,8 @@ void UserName_Set(void)
   USART_SendStringFuncName("Set UserName");
   USART_SendDataFuncName(0X0D);
   USART_SendStringFuncName("Maximum char : ");
-  USART_SendDataFuncName ((USERNAME_MAX_LENGTH / 10) + 48);
-  USART_SendDataFuncName ((USERNAME_MAX_LENGTH % 10) + 48);
+  USART_SendDataFuncName((USERNAME_MAX_LENGTH / 10) + 48);
+  USART_SendDataFuncName((USERNAME_MAX_LENGTH % 10) + 48);
   USART_SendDataFuncName(0X0D);
 #endif
 
@@ -190,7 +206,7 @@ void UserName_Set(void)
 
 #elif OUTPUT_SCREEN == TERMINAL_OUTPUT
       USART_SendStringFuncName("UserName Must be More than ");
-      USART_SendDataFuncName ((USERNAME_MIN_LENGTH - 1) + 48);
+      USART_SendDataFuncName((USERNAME_MIN_LENGTH - 1) + 48);
       USART_SendStringFuncName(" Char");
       USART_SendDataFuncName(0X0D);
       USART_SendStringFuncName("Re Enter UserName");
@@ -370,6 +386,15 @@ void UserName_Set(void)
 
 //======================================================================================================================================//
 
+/**
+ * @brief Sets up a new password with input validation
+ * @details
+ * - Displays password creation interface
+ * - Enforces minimum and maximum length requirements
+ * - Handles backspace and enter key inputs
+ * - Stores valid password in EEPROM
+ * - Provides feedback for invalid entries
+ */
 void PassWord_Set(void)
 {
   // Function to get password from user like UserName Set Function
@@ -388,8 +413,8 @@ void PassWord_Set(void)
   USART_SendStringFuncName("Set PassWord");
   USART_SendDataFuncName(0X0D);
   USART_SendStringFuncName("Maximum char : ");
-  USART_SendDataFuncName ((PASSWORD_MAX_LENGTH / 10) + 48);
-  USART_SendDataFuncName ((PASSWORD_MAX_LENGTH % 10) + 48);
+  USART_SendDataFuncName((PASSWORD_MAX_LENGTH / 10) + 48);
+  USART_SendDataFuncName((PASSWORD_MAX_LENGTH % 10) + 48);
   USART_SendDataFuncName(0X0D);
 #endif
 
@@ -445,15 +470,15 @@ void PassWord_Set(void)
       CLCD_SetPositionFuncName(3, 1);
 #elif OUTPUT_SCREEN == TERMINAL_OUTPUT
       USART_SendStringFuncName("PassWord Must be More than ");
-      USART_SendDataFuncName ((PASSWORD_MIN_LENGTH - 1)+ 48);
+      USART_SendDataFuncName((PASSWORD_MIN_LENGTH - 1) + 48);
       USART_SendStringFuncName(" Char");
       USART_SendDataFuncName(0X0D);
 
       USART_SendStringFuncName("Re Set PassWord");
       USART_SendDataFuncName(0X0D);
       USART_SendStringFuncName("Maximum char : ");
-      USART_SendDataFuncName ((PASSWORD_MAX_LENGTH / 10) + 48);
-      USART_SendDataFuncName ((PASSWORD_MAX_LENGTH % 10) + 48);
+      USART_SendDataFuncName((PASSWORD_MAX_LENGTH / 10) + 48);
+      USART_SendDataFuncName((PASSWORD_MAX_LENGTH % 10) + 48);
       USART_SendDataFuncName(0X0D);
 #endif
       PassWord_Length = 0;
@@ -637,7 +662,15 @@ void PassWord_Set(void)
 
 //======================================================================================================================================//
 
-// check if user name is true or not
+/**
+ * @brief Validates entered username against stored credentials
+ * @details
+ * - Prompts for username input
+ * - Compares input length with stored length
+ * - Performs character-by-character comparison
+ * - Sets UserName_Check_Flag to indicate result
+ * - Handles special key inputs (backspace/enter)
+ */
 void UserName_Check(void)
 {
 #if OUTPUT_SCREEN == CLCD_OUTPUT
@@ -843,6 +876,15 @@ void UserName_Check(void)
 
 //======================================================================================================================================//
 
+/**
+ * @brief Validates entered password against stored credentials
+ * @details
+ * - Prompts for password input
+ * - Compares input length with stored length
+ * - Performs character-by-character comparison
+ * - Sets PassWord_Check_Flag to indicate result
+ * - Handles special key inputs (backspace/enter)
+ */
 void PassWord_Check(void)
 {
 #if OUTPUT_SCREEN == CLCD_OUTPUT
@@ -1039,6 +1081,15 @@ void PassWord_Check(void)
 
 //======================================================================================================================================//
 
+/**
+ * @brief Manages the complete login process
+ * @details
+ * - Coordinates username and password validation
+ * - Tracks and updates remaining login attempts
+ * - Provides feedback on failed attempts
+ * - Triggers timeout when attempts exhausted
+ * - Resets attempt counter on successful login
+ */
 void Sign_In(void)
 {
   while (1)
@@ -1059,23 +1110,23 @@ void Sign_In(void)
       USART_SendStringFuncName("Invalid Username or Password");
       USART_SendDataFuncName(0X0D);
 #endif
-  Tries--;
-  EEPROM_FunWriteName(EEPROM_NoTries_Location, Tries);
+      Tries--;
+      EEPROM_FunWriteName(EEPROM_NoTries_Location, Tries);
 
-  // if there tries i can use
-  if (Tries > 0)
-  {
+      // if there tries i can use
+      if (Tries > 0)
+      {
 #if OUTPUT_SCREEN == CLCD_OUTPUT
-    CLCD_SetPositionFuncName(3, 1);
-    CLCD_SendStringFuncName("Tries Left : ");
-    CLCD_SendDataFuncName(Tries + 48);
-    _delay_ms(700);
+        CLCD_SetPositionFuncName(3, 1);
+        CLCD_SendStringFuncName("Tries Left : ");
+        CLCD_SendDataFuncName(Tries + 48);
+        _delay_ms(700);
 #elif OUTPUT_SCREEN == TERMINAL_OUTPUT
-    USART_SendStringFuncName("Tries Left : ");
-    USART_SendDataFuncName(Tries + 48);
-    USART_SendDataFuncName(0X0D);
+        USART_SendStringFuncName("Tries Left : ");
+        USART_SendDataFuncName(Tries + 48);
+        USART_SendDataFuncName(0X0D);
 #endif
-  }
+      }
       // if there is no tries any more go to function time out to count few of seconds
       else if (Tries == 0)
       {
@@ -1115,7 +1166,14 @@ void Sign_In(void)
 
 //======================================================================================================================================//
 
-// to time out error
+/**
+ * @brief Handles timeout period after maximum failed attempts
+ * @details
+ * - Displays countdown timer (5 seconds)
+ * - Updates display each second
+ * - Resets attempt counter after timeout
+ * - Clears timeout state in EEPROM
+ */
 void Error_TimeOut(void)
 {
 #if OUTPUT_SCREEN == CLCD_OUTPUT
@@ -1148,6 +1206,13 @@ void Error_TimeOut(void)
 
 //======================================================================================================================================//
 #if OUTPUT_SCREEN == CLCD_OUTPUT
+/**
+ * @brief Clears a character from LCD display
+ * @details
+ * - Moves cursor one position left
+ * - Overwrites with space character
+ * - Returns cursor to cleared position
+ */
 void Clear_Char()
 {
   CLCD_SendCommandFuncName(CLCD_SHIFT_CURSOR_LEFT);
@@ -1155,5 +1220,4 @@ void Clear_Char()
   CLCD_SendCommandFuncName(CLCD_SHIFT_CURSOR_LEFT);
 }
 #endif
-
 //======================================================================================================================================//
