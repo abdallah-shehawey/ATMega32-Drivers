@@ -718,47 +718,6 @@ u16 TIMER_u16GetICR(void)
 	return ICR1;
 }
 
-//----------------------------------------------------------------------------------------------------------------------------------------------------
-/*
-u8   TIMER_u8GetPWMOnPeriod   (u16 * Copy_pu16OnPeriod)
-{
-	u8 Local_u8ReturnState = STD_TYPES_u8_ERROR_NOK;
-	if(Copy_pu16OnPeriod != NULL)
-	{
-		*Copy_pu16OnPeriod = TIMER_u16OnPeriod;
-		Local_u8ReturnState  = STD_TYPES_u8_ERROR_OK;
-	}
-	return Local_u8ReturnState;
-}
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
-
-u8   TIMER_u8GetPWMTotalPeriod(u32 * Copy_pu32TotalPeriod)
-{
-	u8 Local_u8ReturnState = STD_TYPES_u8_ERROR_NOK;
-	if(Copy_pu32TotalPeriod != NULL)
-	{
-		*Copy_pu32TotalPeriod = (u32)(TIMER_u16OnPeriod + Timeru16OffPeriod);
-		Local_u8ReturnState  = STD_TYPES_u8_ERROR_OK;
-	}
-	return Local_u8ReturnState;
-}
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
-
-u8   TIMER_u8GetPWMDutyCycle  (u8  * Copy_pu8DutyCycle)
-{
-	u8 Local_u8ReturnState = STD_TYPES_u8_ERROR_NOK;
-	if(Copy_pu8DutyCycle != NULL)
-	{
-		*Copy_pu8DutyCycle =(u8)(((u32)TIMER_u16OnPeriod * 100) / (TIMER_u16OnPeriod + Timeru16OffPeriod));
-		Local_u8ReturnState  = STD_TYPES_u8_ERROR_OK;
-	}
-	return Local_u8ReturnState;
-}
-*/
-
-//----------------------------------------------------------------------------------------------------------------------------------------------------
 /* Hint : prebuild config  */
 void TIMER_vWDTSleep(void)
 {
