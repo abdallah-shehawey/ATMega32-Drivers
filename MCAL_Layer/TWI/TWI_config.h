@@ -11,8 +11,6 @@
 #define TWI_CONFIG_H_
 
 #define F_CPU 8000000UL
-
-
 /*
 $ Options :-
 	1-PRESCALLER_BY_1
