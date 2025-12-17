@@ -465,6 +465,6 @@ void __vector_12(void)
 		/*Buffer not Complete*/
 
 		/*Transmit next Data*/
-		SPDR = tg;
+		SPDR = SPI_pu8RData[SPI_u8Index] ;
 	}
 }
