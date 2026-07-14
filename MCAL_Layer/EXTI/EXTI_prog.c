@@ -280,7 +280,6 @@ void __vector_1(void)
 
   if (EXTI_CallBack[0] != NULL)
   {
-
     EXTI_CallBack[0]();
     EXTI_vClearFlag(EXTI_LINE0);
   }
@@ -292,7 +291,6 @@ void __vector_2(void)
 
   if (EXTI_CallBack[1] != NULL)
   {
-
     EXTI_CallBack[1]();
     EXTI_vClearFlag(EXTI_LINE1);
   }
@@ -301,10 +299,8 @@ void __vector_2(void)
 void __vector_3(void)              __attribute__((signal));
 void __vector_3(void) 
 {
-
   if (EXTI_CallBack[2] != NULL)
   {
-
     EXTI_CallBack[2]();
     EXTI_vClearFlag(EXTI_LINE2);
   }
